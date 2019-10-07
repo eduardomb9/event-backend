@@ -5,6 +5,7 @@ import br.gov.ce.arce.estagio.evento.model.Participante;
 import br.gov.ce.arce.estagio.evento.repository.EventoRepository;
 import br.gov.ce.arce.estagio.evento.repository.ParticipanteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -64,8 +65,12 @@ public class EventoController {
     @CrossOrigin
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity removeEvento(@PathVariable("id") Long id) {
-        eventoRepository.deleteById(id);
-        return ResponseEntity.ok("evento removido");
+        if (participanteRepository.findByEventoId(id).size() == 0) {
+            eventoRepository.deleteById(id);
+        } else {
+            return ResponseEntity.unprocessableEntity().body("Não foi possivel remover o evento, pois ele tem participantes associados.");
+        }
+        return ResponseEntity.ok("Evento removido");
     }
 
     @CrossOrigin
@@ -74,7 +79,7 @@ public class EventoController {
                                      @RequestBody Evento evento
     ) {
         eventoRepository.save(evento);
-        return ResponseEntity.ok("evento alterado");
+        return ResponseEntity.ok("Evento alterado");
     }
 
 }
