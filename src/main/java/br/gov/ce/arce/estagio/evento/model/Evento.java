@@ -25,6 +25,10 @@ public class Evento {
     @OneToMany(mappedBy = "evento")
     private List<Participante> participantes = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "id_tipo_evento")
+    private TipoEvento tipoEvento;
+
     public Long getId() {
         return id;
     }
@@ -47,5 +51,13 @@ public class Evento {
 
     public void setParticipantes(List<Participante> participantes) {
         this.participantes = participantes;
+    }
+
+    public TipoEvento getTipoEvento() {
+        return tipoEvento;
+    }
+
+    public void setTipoEvento(TipoEvento tipoEvento) {
+        this.tipoEvento = tipoEvento;
     }
 }
