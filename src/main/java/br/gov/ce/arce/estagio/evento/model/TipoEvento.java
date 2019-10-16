@@ -1,10 +1,11 @@
 package br.gov.ce.arce.estagio.evento.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "tb_tipo_evento", schema = "estagiario")
-public class TipoEvento {
+public class TipoEvento implements Serializable {
 
     @Id
     @SequenceGenerator(name = "sq_tipo_evento", sequenceName = "estagiario.sq_tipo_evento")

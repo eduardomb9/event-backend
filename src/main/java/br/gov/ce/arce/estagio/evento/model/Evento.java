@@ -1,9 +1,11 @@
 package br.gov.ce.arce.estagio.evento.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +22,12 @@ public class Evento {
     @Column(name = "nm_evento")
     @NotEmpty(message = "Nome é um campo obrigatorio.")
     private String nome;
+
+    @Column(name = "dt_inicio")
+    private LocalDate inicio;
+
+    @Column(name = "dt_fim")
+    private LocalDate fim;
 
     @JsonIgnore
     @OneToMany(mappedBy = "evento")
@@ -59,5 +67,21 @@ public class Evento {
 
     public void setTipoEvento(TipoEvento tipoEvento) {
         this.tipoEvento = tipoEvento;
+    }
+
+    public LocalDate getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(LocalDate inicio) {
+        this.inicio = inicio;
+    }
+
+    public LocalDate getFim() {
+        return fim;
+    }
+
+    public void setFim(LocalDate fim) {
+        this.fim = fim;
     }
 }
