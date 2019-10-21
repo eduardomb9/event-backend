@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,10 +24,10 @@ public class Evento {
     private String nome;
 
     @Column(name = "dt_inicio")
-    private LocalDate inicio;
+    private LocalDateTime inicio;
 
     @Column(name = "dt_fim")
-    private LocalDate fim;
+    private LocalDateTime fim;
 
     @JsonIgnore
     @OneToMany(mappedBy = "evento")
@@ -69,19 +69,19 @@ public class Evento {
         this.tipoEvento = tipoEvento;
     }
 
-    public LocalDate getInicio() {
+    public LocalDateTime getInicio() {
         return inicio;
     }
 
-    public void setInicio(LocalDate inicio) {
+    public void setInicio(LocalDateTime inicio) {
         this.inicio = inicio;
     }
 
-    public LocalDate getFim() {
+    public LocalDateTime getFim() {
         return fim;
     }
 
-    public void setFim(LocalDate fim) {
+    public void setFim(LocalDateTime fim) {
         this.fim = fim;
     }
 }
