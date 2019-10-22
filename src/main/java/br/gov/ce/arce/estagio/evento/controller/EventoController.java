@@ -54,11 +54,7 @@ public class EventoController {
     @CrossOrigin
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity removeEvento(@PathVariable("id") Long id) {
-        try {
-            eventoService.removerEvento(id);
-        } catch (EventoException e) {
-            ResponseEntity.unprocessableEntity();
-        }
+        eventoService.removerEvento(id);
         return ResponseEntity.ok("Removido com sucesso.");
     }
 
