@@ -1,6 +1,6 @@
 package br.gov.ce.arce.estagio.evento.controller;
 
-import br.gov.ce.arce.estagio.evento.EmailConfig;
+import br.gov.ce.arce.estagio.evento.config.EmailConfig;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;

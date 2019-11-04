@@ -1,4 +1,4 @@
-package br.gov.ce.arce.estagio.evento;
+package br.gov.ce.arce.estagio.evento.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
