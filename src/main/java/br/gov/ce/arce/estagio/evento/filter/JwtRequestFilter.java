@@ -3,6 +3,7 @@ package br.gov.ce.arce.estagio.evento.filter;
 import br.gov.ce.arce.estagio.evento.config.JwtTokenUtil;
 import br.gov.ce.arce.estagio.evento.service.JwtUserDetailsService;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -43,6 +44,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 System.out.println("Unable to get JWT Token");
             } catch (ExpiredJwtException e) {
                 System.out.println("JWT Token has expired");
+            } catch (MalformedJwtException e) {
+                logger.warn("JWT Token does not have a valid format");
             }
         } else {
             logger.warn("JWT Token does not begin with Bearer String");
@@ -59,6 +62,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                         new WebAuthenticationDetailsSource().buildDetails(httpServletRequest)
                 );
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+            } else {
+                logger.warn("JWT Token is not valid");
             }
         }
         
