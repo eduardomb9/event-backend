@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/tipo_evento")
+@CrossOrigin
 public class TipoEventoController {
 
     private TipoEventoService tipoEventoService;
@@ -20,7 +21,6 @@ public class TipoEventoController {
         this.tipoEventoService = service;
     }
 
-    @CrossOrigin
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity getTipoEventos() {
         return ResponseEntity.ok(tipoEventoService.getTiposEventos());
