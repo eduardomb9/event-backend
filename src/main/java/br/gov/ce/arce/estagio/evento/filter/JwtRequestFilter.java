@@ -33,6 +33,13 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         final String requestTokenHeader = httpServletRequest.getHeader("Authorization");
 
+        StringBuffer url = httpServletRequest.getRequestURL();
+
+        if ( url.toString().contains("/authenticate") ) {
+            filterChain.doFilter(httpServletRequest, httpServletResponse);
+            return;
+        }
+
         String username = null;
         String jwtToken = null;
 
