@@ -1,11 +1,14 @@
 package br.gov.ce.arce.estagio.evento.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Data
 @Entity
 @Table(name = "tb_tipo_evento", schema = "estagiario")
-public class TipoEvento implements Serializable {
+public class EventType extends AbstractEntity<Integer> implements Serializable {
 
     @Id
     @SequenceGenerator(name = "sq_tipo_evento", sequenceName = "estagiario.sq_tipo_evento")
@@ -16,19 +19,4 @@ public class TipoEvento implements Serializable {
     @Column(name = "nm_tipo_evento")
     private String descricao;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
 }

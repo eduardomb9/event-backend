@@ -16,6 +16,8 @@ public class JwtUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // TODO obter credenciais por nome do usuario.
+
         if ("user".equals(username)) {
             return new User("user", "password",
                     new ArrayList<>());
