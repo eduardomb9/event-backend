@@ -33,18 +33,23 @@ public class EventServiceTest {
 
     @Test
     public void getEventoByIdTest() {
-        Event e = new Event();
         long id = 1L;
         String nome = "NOME";
-        e.setId(id);
-        e.setNome(nome);
-        Mockito.when(eventRepository.findById(id)).thenReturn(Optional.of(e));
+
+        Event eventActual = new Event();
+        eventActual.setId(id);
+        eventActual.setNome(nome);
+
+        Event eventExpected = new Event();
+        eventExpected.setId(id);
+        eventExpected.setNome(nome);
+
+        Mockito.when(eventRepository.findById(id)).thenReturn(Optional.of(eventActual));
 
         Event event = eventService.getEventoById(id);
 
         assertThat(event, not(nullValue()));
-        assertThat(event.getId(), is(id));
-        assertThat(event.getNome(), is(nome));
+        assertThat(event, is(eventExpected));
     }
 
     @Test

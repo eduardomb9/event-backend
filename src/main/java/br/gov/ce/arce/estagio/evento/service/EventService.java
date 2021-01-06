@@ -5,6 +5,7 @@ import br.gov.ce.arce.estagio.evento.model.Event;
 import br.gov.ce.arce.estagio.evento.model.Participant;
 import br.gov.ce.arce.estagio.evento.repository.EventRepository;
 import br.gov.ce.arce.estagio.evento.repository.ParticipantRepository;
+import br.gov.ce.arce.estagio.evento.specification.ParticipantSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,7 @@ public class EventService {
     }
 
     public List<Participant> getParticipantesByEventoId(Long eventoId) {
-        return participantRepository.findByEventoId(eventoId);
+        return participantRepository.findAll(ParticipantSpecification.eventoId(eventoId));
     }
 
     public Event adicionarEvento(Event event) {
@@ -49,7 +50,7 @@ public class EventService {
     }
 
     public void removerEvento(Long id) throws EventException {
-        if (participantRepository.findByEventoId(id).size() == 0) {
+        if (participantRepository.count(ParticipantSpecification.eventoId(id)) == 0) {
             eventRepository.deleteById(id);
         } else {
             throw new EventException("event.cannot.remove");
