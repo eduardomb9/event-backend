@@ -39,7 +39,7 @@ public class Event extends AbstractEntity<Long> {
 
     @JsonIgnore
     @NotAudited
-    @OneToMany(mappedBy = "evento")
+    @OneToMany(mappedBy = "event")
     private List<Participant> participants = new ArrayList<>();
 
     @ManyToOne
